@@ -7,12 +7,13 @@ int main(void)
 {
     printf("Enter name: \n");
     string s = get_string();
-    printf("name: %s\n", s);
+    printf("%c", toupper(s[0]));
     for(int i = 0, n = strlen(s); i < n; i++)
     {
         if (isspace(s[i]))
         {
-            printf("Second initial: %c\n", s[i+1]);
+            printf("%c", toupper(s[i+1]));
         }
     }
+    printf("\n");
 }
