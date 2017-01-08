@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    printf("Enter name: \n");
+    //printf("Enter name: \n");
     string s = get_string();
     printf("%c", toupper(s[0]));
     for(int i = 0, n = strlen(s); i < n; i++)
