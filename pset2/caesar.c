@@ -39,25 +39,49 @@ char* caesarCipher(string plain_text, int cipher_key)
     char* plain = plain_text;
     int plain_length = strlen(plain);
     printf("length of user inputted string: %i\n", plain_length);
-    char encrypted_text[plain_length];
+    char* encrypted_text = malloc(sizeof(plain));
     //iterate over each character in plain and push the ascii value of that char to a new array
     for(int i = 0, n = strlen(plain); i < n; i++)
     {
-        //get the ascii value of the i'th character in plain
-        int k = (int) plain[i];
-        printf("char: %c int: %i\n", plain[i], k);
-        //add the value of cipher key to k
-        int l = k + cipher_key;
-        printf("%i\n", l);
-
-        //change the ascii value (+=) by the key, but subtract 26 if that value goes past Z / z
-        if(l > 90)
+        //check to see if the char is alphabetic
+        if(isalpha(plain[i]))
         {
-            l -= 26;
+            //check to see if the char is uppercase, if so, then we need to make the range 65-90, 65 = A, 90 = Z
+            if(isupper(plain[i]))
+            {
+                //get the ascii value of the i'th character in plain
+                int k = (int) plain[i];
+                //printf("char: %c int: %i\n", plain[i], k);
+                //add the value of cipher key to k
+                int l = k + cipher_key;
+                //printf("%i\n", l);
+
+                //change the ascii value by the key, but subtract 26 if that value goes past Z / z
+                if(l > 90)
+                {
+                    l -= 26;
+                }
+                encrypted_text[i] = (char) l;
+                //printf("%c", (char) l);
+            }
+            else if(islower(plain[i]))
+            {
+                //get the ascii value of the i'th character in plain
+                int k = (int) plain[i];
+                //printf("char: %c int: %i\n", plain[i], k);
+                //add the value of cipher key to k
+                int l = k + cipher_key;
+                //printf("%i\n", l);
+
+                //change the ascii value by the key, but subtract 26 if that value goes past Z / z
+                if(l > 121)
+                {
+                    l -= 26;
+                }
+                encrypted_text[i] = (char) l;
+                //printf("%c", (char) l);
+            }
         }
-        encrypted_text[i] = (char) l;
-        //printf("%c", (char) l);
     }
-    printf("%s %d\n", plain, cipher_key);
     return encrypted_text;
 }
