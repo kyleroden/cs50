@@ -26,7 +26,8 @@ int main(int argc, string argv[])
             //encrypt the text
             string encrypted_text = caesarCipher(plain_text, cipher_key);
             printf("ciphertext: %s\n", encrypted_text);
-            printf("num: %d\n", cipher_key);
+            free(encrypted_text);
+            //printf("num: %d\n", cipher_key);
         }
     }
     //indicates that all went well
@@ -37,8 +38,8 @@ int main(int argc, string argv[])
 char* caesarCipher(string plain_text, int cipher_key)
 {
     char* plain = plain_text;
-    int plain_length = strlen(plain);
-    printf("length of user inputted string: %i\n", plain_length);
+    //int plain_length = strlen(plain);
+    //printf("length of user inputted string: %i\n", plain_length);
     char* encrypted_text = malloc(sizeof(plain));
     //iterate over each character in plain and push the ascii value of that char to a new array
     for(int i = 0, n = strlen(plain); i < n; i++)
@@ -53,13 +54,15 @@ char* caesarCipher(string plain_text, int cipher_key)
                 int k = (int) plain[i];
                 //printf("char: %c int: %i\n", plain[i], k);
                 //add the value of cipher key to k
-                int l = k + cipher_key;
+                int l = k + (cipher_key % 26);
                 //printf("%i\n", l);
 
                 //change the ascii value by the key, but subtract 26 if that value goes past Z / z
                 if(l > 90)
                 {
+                    //this works, kinda, but not if the value of the key is high (like 65, with one of the test cases)
                     l -= 26;
+                    //l = (l % 26) + 65;
                 }
                 encrypted_text[i] = (char) l;
                 //printf("%c", (char) l);
@@ -70,7 +73,7 @@ char* caesarCipher(string plain_text, int cipher_key)
                 int k = (int) plain[i];
                 //printf("char: %c int: %i\n", plain[i], k);
                 //add the value of cipher key to k
-                int l = k + cipher_key;
+                int l = k + (cipher_key % 26);
                 //printf("%i\n", l);
 
                 //change the ascii value by the key, but subtract 26 if that value goes past Z / z
@@ -81,7 +84,17 @@ char* caesarCipher(string plain_text, int cipher_key)
                 encrypted_text[i] = (char) l;
                 //printf("%c", (char) l);
             }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            //int k = (int) plain[i];
+            encrypted_text[i] = plain[i];
         }
     }
+    //free(encrypted_text);
     return encrypted_text;
 }
