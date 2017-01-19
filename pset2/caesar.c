@@ -27,7 +27,6 @@ int main(int argc, string argv[])
             string encrypted_text = caesarCipher(plain_text, cipher_key);
             printf("ciphertext: %s\n", encrypted_text);
             free(encrypted_text);
-            //printf("num: %d\n", cipher_key);
         }
     }
     //indicates that all went well
@@ -38,8 +37,6 @@ int main(int argc, string argv[])
 char* caesarCipher(string plain_text, int cipher_key)
 {
     char* plain = plain_text;
-    //int plain_length = strlen(plain);
-    //printf("length of user inputted string: %i\n", plain_length);
     char* encrypted_text = malloc(sizeof(plain));
     //iterate over each character in plain and push the ascii value of that char to a new array
     for(int i = 0, n = strlen(plain); i < n; i++)
@@ -52,10 +49,8 @@ char* caesarCipher(string plain_text, int cipher_key)
             {
                 //get the ascii value of the i'th character in plain
                 int k = (int) plain[i];
-                //printf("char: %c int: %i\n", plain[i], k);
                 //add the value of cipher key to k
                 int l = k + (cipher_key % 26);
-                //printf("%i\n", l);
 
                 //change the ascii value by the key, but subtract 26 if that value goes past Z / z
                 if(l > 90)
@@ -71,10 +66,8 @@ char* caesarCipher(string plain_text, int cipher_key)
             {
                 //get the ascii value of the i'th character in plain
                 int k = (int) plain[i];
-                //printf("char: %c int: %i\n", plain[i], k);
                 //add the value of cipher key to k
                 int l = k + (cipher_key % 26);
-                //printf("%i\n", l);
 
                 //change the ascii value by the key, but subtract 26 if that value goes past Z / z
                 if(l > 121)
@@ -82,7 +75,6 @@ char* caesarCipher(string plain_text, int cipher_key)
                     l -= 26;
                 }
                 encrypted_text[i] = (char) l;
-                //printf("%c", (char) l);
             }
             else
             {
@@ -91,10 +83,8 @@ char* caesarCipher(string plain_text, int cipher_key)
         }
         else
         {
-            //int k = (int) plain[i];
             encrypted_text[i] = plain[i];
         }
     }
-    //free(encrypted_text);
     return encrypted_text;
 }
