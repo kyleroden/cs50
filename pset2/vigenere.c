@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <cs50.h>
 #include <string.h>
+#include <ctype.h>
 
 char* vigenereCipher(string input_txt, char* v_key);
 
@@ -36,15 +37,25 @@ char* vigenereCipher(string input_txt, char* v_key)
     //store the text given to the function into variable
     plain_txt = input_txt;
     //loop over each char in the text and encrypt it
-    for(int i = 0, n = strlen(plain_txt); i < n; i++)
+    //int i is created in iterate over string
+    //int k is created to iterate over the key chars
+    for(int i = 0, k = 0, n = strlen(plain_txt); i < n; i++)
     {
-        int y = (int) plain_txt[i];
-        //just temporary garbage, delete this later
-        int r = y + 1;
-        //fix this later
-        enc_txt[i] = (char) r;
+        if(isalpha(plain_txt[i])) //the char is alphabetic, so we encrypt
+        {
+            int y = (int) plain_txt[i];
+            //just temporary garbage, delete this later
+            int r = y + (int) v_key[k];
+            //fix this later
+            enc_txt[i] = (char) r;
+            k++;
+        }
+        else //the char is not alphabetic
+        {
+            enc_txt[i] = plain_txt[i];
+        }
     }
     //fix this. currently us to use the v_key
-    printf("Key: %s\n", v_key);
+    //printf("Key: %s\n", v_key);
     return enc_txt;
 }
