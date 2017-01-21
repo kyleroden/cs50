@@ -36,6 +36,8 @@ char* vigenereCipher(string input_txt, char* v_key)
     char* enc_txt = malloc(sizeof(input_txt));
     //store the text given to the function into variable
     plain_txt = input_txt;
+    //store the length of the key so we can ensure that the chars in the key are looped through properly
+    int key_len = strlen(v_key);
     //loop over each char in the text and encrypt it
     //int i is created in iterate over string
     //int k is created to iterate over the key chars
@@ -43,19 +45,51 @@ char* vigenereCipher(string input_txt, char* v_key)
     {
         if(isalpha(plain_txt[i])) //the char is alphabetic, so we encrypt
         {
-            int y = (int) plain_txt[i];
-            //just temporary garbage, delete this later
-            int r = y + (int) v_key[k];
-            //fix this later
-            enc_txt[i] = (char) r;
-            k++;
+            if(isupper(plain_txt[i]))
+            {
+                //get the ascii value of the char in plain_txt
+                //if plain_txt = HELLO, y is 72
+                int y = (int) plain_txt[i];
+                //
+                // with a key of CBA, r is 2
+                int r = ((int) v_key[k] - 65);
+                //
+                enc_txt[i] = (char) (y + r);
+                if (k < key_len)
+                {
+                    k++;
+                }
+                //set k back to zero so we can loop through the key again
+                else
+                {
+                    k = 0;
+                }
+            }
+            else if(islower(plain_txt[i]))
+            {
+                //get the ascii value of the char in plain_txt
+                //if plain_txt = hello, y is 104
+                int y = (int) plain_txt[i];
+                //
+                // with a key of cba, r is 2
+                int r = ((int) v_key[k] - 97);
+                //
+                enc_txt[i] = (char) (y + r);
+                if (k < key_len)
+                {
+                    k++;
+                }
+                //set k back to zero so we can loop through the key again
+                else
+                {
+                    k = 0;
+                }
+            }
         }
         else //the char is not alphabetic
         {
             enc_txt[i] = plain_txt[i];
         }
     }
-    //fix this. currently us to use the v_key
-    //printf("Key: %s\n", v_key);
     return enc_txt;
 }
