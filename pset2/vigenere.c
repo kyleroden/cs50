@@ -8,7 +8,7 @@ char* vigenereCipher(string input_txt, char* v_key);
 
 int main(int argc, string argv[])
 {
-    printf("The program has begun!\n");
+    //printf("The program has begun!\n");
     string v_key = argv[1];
     //this isn't really working too well yet
     if(argc != 2)
@@ -23,7 +23,7 @@ int main(int argc, string argv[])
     //run the encryption function
     string crypt_text = vigenereCipher(plain_text, v_key);
     //print out the encrypted text
-    printf("crypt_text: %s\n", crypt_text);
+    printf("ciphertext: %s\n", crypt_text);
     free(crypt_text);
     //indicate that all went well
     return 0;
@@ -52,7 +52,7 @@ char* vigenereCipher(string input_txt, char* v_key)
                 int y = (int) plain_txt[i];
                 //
                 // with a key of CBA, r is 2
-                int r = ((int) v_key[k] - 65);
+                int r = ((int) v_key[(k) % key_len]) - 65;
                 //
                 enc_txt[i] = (char) (y + r);
                 if (k < key_len)
@@ -72,7 +72,7 @@ char* vigenereCipher(string input_txt, char* v_key)
                 int y = (int) plain_txt[i];
                 //
                 // with a key of cba, r is 2
-                int r = ((int) v_key[k] - 97);
+                int r = ((int) v_key[(k) % key_len]) - 97;
                 //
                 enc_txt[i] = (char) (y + r);
                 if (k < key_len)
