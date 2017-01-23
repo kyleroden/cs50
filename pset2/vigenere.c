@@ -50,40 +50,25 @@ char* vigenereCipher(string input_txt, char* v_key)
                 //get the ascii value of the char in plain_txt
                 //if plain_txt = HELLO, y is 72
                 int y = (int) plain_txt[i];
-                //
+                //get the ascii value of the char to encrypt to
                 // with a key of CBA, r is 2
-                int r = ((int) v_key[(k) % key_len]) - 65;
+                int r = (int) (v_key[(k) % key_len]) - 65;
                 //
                 enc_txt[i] = (char) (y + r);
-                if (k < key_len)
-                {
-                    k++;
-                }
-                //set k back to zero so we can loop through the key again
-                else
-                {
-                    k = 0;
-                }
+                k++;
             }
             else if(islower(plain_txt[i]))
             {
                 //get the ascii value of the char in plain_txt
                 //if plain_txt = hello, y is 104
                 int y = (int) plain_txt[i];
-                //
+                //get the ascii value of the char to encrypt to
                 // with a key of cba, r is 2
-                int r = ((int) v_key[(k) % key_len]) - 97;
+                int r = (int) (v_key[(k) % key_len]) - 97;
                 //
                 enc_txt[i] = (char) (y + r);
-                if (k < key_len)
-                {
-                    k++;
-                }
-                //set k back to zero so we can loop through the key again
-                else
-                {
-                    k = 0;
-                }
+                k++;
+
             }
         }
         else //the char is not alphabetic
