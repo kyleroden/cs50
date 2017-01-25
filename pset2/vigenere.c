@@ -8,14 +8,26 @@ char* vigenereCipher(string input_txt, char* v_key);
 
 int main(int argc, string argv[])
 {
-    //printf("The program has begun!\n");
-    string v_key = argv[1];
     //this isn't really working too well yet
     if(argc != 2)
     {
         printf("Enter a set of characters to use as a key ('ABC', or 'YKL')\n");
         return 1;
     }
+    //key for encrypting
+    string v_key = argv[1];
+    //get the length of the key
+    int key_len = strlen(v_key);
+    //loop over each char in the key, to ensure that each is alphabetic
+    for(int i = 0; i < key_len; i++)
+    {
+        if(!isalpha(v_key[i]))
+        {
+            printf("Keyword must only contain alphabetic characters ('a-z, A-Z')\n");
+            return 1;
+        }
+    }
+
     //print instructions to user to enter text which will be encrypted
     printf("plaintext: ");
     //store the input in variable
