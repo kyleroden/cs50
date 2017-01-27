@@ -61,24 +61,24 @@ char* vigenereCipher(string input_txt, char* v_key)
             {
                 //get the ascii value of the char in plain_txt
                 //if plain_txt = HELLO, y is 72
-                int y = (int) plain_txt[i];
+                int y = (int) plain_txt[i] - 65;
                 //get the ascii value of the char to encrypt to
                 // with a key of CBA, r is 2
                 int r = (int) (v_key[(k) % key_len]) - 65;
                 //
-                enc_txt[i] = (char) (y + r);
+                enc_txt[i] = (char) ((y + r) % 26) + 65;
                 k++;
             }
             else if(islower(plain_txt[i]))
             {
                 //get the ascii value of the char in plain_txt
                 //if plain_txt = hello, y is 104
-                int y = (int) plain_txt[i];
+                int y = (int) plain_txt[i] - 97;
                 //get the ascii value of the char to encrypt to
                 // with a key of cba, r is 2
                 int r = (int) (v_key[(k) % key_len]) - 97;
                 //
-                enc_txt[i] = (char) (y + r);
+                enc_txt[i] = (char) ((y + r) % 26) + 97;
                 k++;
 
             }
