@@ -15,27 +15,32 @@
 bool search(int value, int values[], int n)
 {
     // TODO: implement a searching algorithm
-    if(n < 0)
+    //establish the lower and upper limits of the array of values
+    int upper = n - 1;
+    int lower = 0;
+    while(lower <= upper)
     {
-        return false;
-    }
-    else
-    {
-        //establish the lower and upper limits of the array of values
-        int upper = size - 1;
-        int lower = 0;
-
-        int midpoint = floor(n / 2);
-        if(midpoint == value)
+        //establish the midpoint value
+        int midpoint = floor((upper + lower) / 2);
+        //check that value to see if it is the value which we're looking for
+        if(values[midpoint] == value)
         {
             return true;
         }
-        else
+        //the value can be found in the right half of the array
+        //so we 'forget' the left half by setting the lower to one value right of the midpoint
+        else if (value > midpoint)
         {
-            values[0] = midpoint + 1;
-            search()
+            lower = midpoint + 1;
+        }
+        //value can be found in left half, so we forget right half
+        else if (value < midpoint)
+        {
+            upper = midpoint - 1;
         }
     }
+    //value can't be found
+    return false;
 }
 
 /**
