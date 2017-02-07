@@ -51,20 +51,25 @@ void sort(int values[], int n)
     // TODO: implement an O(n^2) sorting algorithm
     //selection sort
     //for loop to look at each item in the array till size - 2
-    for(int i = 0; i < n - 2; i++)
+    for(int i = 0; i < (n - 2); i++)
     {
-        int min;
+        int min = i;
         //for loop to compare that item to the rest of the items, seeing which is smaller
-        for(int j = 1; j < n - 1; j++)
+        for(int j = (i + 1); j < n; j++)
         {
             //change the value of the smallest to that value if it is smaller
-            if(values[j] < values[i])
+            if(values[j] < values[min])
             {
-                min = values[j];
-                values[i] = values[j];
-
+                min = j;
             }
         }
+        //swap the item at min in the correct position
+        //first make a temporary variable, and store the value of the min
+        int tmp = values[min];
+        //then swap the other, higher value, from i to the location where min was
+        values[min] = values[i];
+        //finally, store the lower value at the i
+        values[i] = tmp;
     }
 
     return;
