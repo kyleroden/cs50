@@ -49,5 +49,23 @@ bool search(int value, int values[], int n)
 void sort(int values[], int n)
 {
     // TODO: implement an O(n^2) sorting algorithm
+    //selection sort
+    //for loop to look at each item in the array till size - 2
+    for(int i = 0; i < n - 2; i++)
+    {
+        int min;
+        //for loop to compare that item to the rest of the items, seeing which is smaller
+        for(int j = 1; j < n - 1; j++)
+        {
+            //change the value of the smallest to that value if it is smaller
+            if(values[j] < values[i])
+            {
+                min = values[j];
+                values[i] = values[j];
+
+            }
+        }
+    }
+
     return;
 }
