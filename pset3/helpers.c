@@ -71,6 +71,5 @@ void sort(int values[], int n)
         //finally, store the lower value at the i
         values[i] = tmp;
     }
-
     return;
 }
