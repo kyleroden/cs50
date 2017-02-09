@@ -157,6 +157,16 @@ void greet(void)
 void init(void)
 {
     // TODO
+    int tile_num = (d * d) - 1;
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++)
+        {
+            //start with the highest number, which would be 8 in a 3x3
+            board[i][j] = tile_num;
+            --tile_num;
+        }
+    }
 }
 
 /**
@@ -165,6 +175,15 @@ void init(void)
 void draw(void)
 {
     // TODO
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++)
+        {
+            printf("%i", board[i][j]);
+        }
+        printf("\n");
+    }
+
 }
 
 /**
