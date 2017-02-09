@@ -179,7 +179,14 @@ void draw(void)
     {
         for(int j = 0; j < d; j++)
         {
-            printf("%i", board[i][j]);
+            if(board[i][j] < 1)
+            {
+                printf("%s", "_");
+            }
+            else
+            {
+                printf("%d", board[i][j]);
+            }
         }
         printf("\n");
     }
