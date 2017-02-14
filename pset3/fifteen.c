@@ -199,7 +199,32 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+    // iterate through all of the board's positions to find the tile which the user wants to move
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++)
+        {
+            //check if this particular position has the wanted tile
+            if(board[i][j] == tile)
+            {
+                //found the tile.
+                //first make sure that if we look at the tile to the right, we aren't going to get undefined, by going past the board
+                if(j + 1 >= d)
+                {
+                    return false;
+                }
+                //then check to see if the tile to the right is the blank tile (0)
+                if(board[i][j + 1] == 0)
+                {
+                    //make a temp variable, to store the location THE tile being moved
+                    int tmp = board[i][j];
+                    //then 'move' tile by storing the location of the blank tile into THE tile's location
+                    board[i][j] = board[i][j + 1];
+                    board[i][j + 1] = tmp;
+                }
+            }
+        }
+    }
     return false;
 }
 
