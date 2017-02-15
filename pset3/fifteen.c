@@ -199,6 +199,26 @@ void draw(void)
  */
 bool move(int tile)
 {
+    //variables which will store the location of the blank tile
+    int blank_column;
+    int blank_row;
+
+    //variables to store the location of our tile
+    int tile_column;
+    int tile_row;
+
+    //find the blank tile and store its position
+    for(int k = 0; k < d; k++)
+    {
+        for(int y = 0; y < d; y++)
+        {
+            if(board[k][y] == 0)
+            {
+                blank_row = k;
+                blank_column = y;
+            }
+        }
+    }
     // iterate through all of the board's positions to find the tile which the user wants to move
     for(int i = 0; i < d; i++)
     {
@@ -208,19 +228,22 @@ bool move(int tile)
             if(board[i][j] == tile)
             {
                 //found the tile.
-                //first make sure that if we look at the tile to the right, we aren't going to get undefined, by going past the board
-                if(j + 1 >= d)
+                tile_row = i;
+                tile_column = j;
+
+                //then check that the user's requested tile can be moved
+                if((tile_column + 1 == blank_column && tile_row == blank_row))
+                {
+                    //make a temp variable, to store THE tile being moved
+                    int tmp = board[tile_row][tile_column];
+                    //then 'move' tile by storing the location of the blank tile into THE tile's location
+                    board[tile_row][tile_column] = board[blank_row][blank_column];
+                    board[blank_row][blank_column] = tmp;
+                    return true;
+                }
+                else
                 {
                     return false;
-                }
-                //then check to see if the tile to the right is the blank tile (0)
-                if(board[i][j + 1] == 0)
-                {
-                    //make a temp variable, to store the location THE tile being moved
-                    int tmp = board[i][j];
-                    //then 'move' tile by storing the location of the blank tile into THE tile's location
-                    board[i][j] = board[i][j + 1];
-                    board[i][j + 1] = tmp;
                 }
             }
         }
