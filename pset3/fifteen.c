@@ -163,8 +163,22 @@ void init(void)
         for(int j = 0; j < d; j++)
         {
             //start with the highest number, which would be 8 in a 3x3
-            board[i][j] = tile_num;
-            --tile_num;
+            if(d <= 3 && tile_num == 2)
+            {
+                board[i][j] = 1;
+                --tile_num;
+            }
+            else if(d <= 3 && tile_num == 1)
+            {
+                board[i][j] = 2;
+                --tile_num;
+            }
+            else
+            {
+                board[i][j] = tile_num;
+                --tile_num;
+            }
+
         }
     }
 }
