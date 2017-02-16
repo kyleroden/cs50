@@ -232,7 +232,7 @@ bool move(int tile)
                 tile_column = j;
 
                 //then check that the user's requested tile can be moved
-                if((tile_column + 1 == blank_column && tile_row == blank_row))
+                if((tile_column + 1 == blank_column && tile_row == blank_row) || (tile_column - 1 == blank_column && tile_row == blank_row) || (tile_row - 1 == blank_row && tile_column == blank_column) || (tile_row + 1 == blank_row && tile_column == blank_column))
                 {
                     //make a temp variable, to store THE tile being moved
                     int tmp = board[tile_row][tile_column];
