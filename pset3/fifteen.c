@@ -272,11 +272,15 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
+    int num = 1;
     for(int i = 0; i < d; i++ )
     {
         for(int j = 0; j < d; j++)
         {
-            int num = 1;
+            if(num == d * d && board[i][j] == 0)
+            {
+                return true;
+            }
             if(board[i][j] == num)
             {
                 num++;
@@ -289,5 +293,4 @@ bool won(void)
     }
     //num on tile incremented correctly (1, 2, 3, etc. )
     return true;
-
 }
