@@ -163,7 +163,8 @@ void init(void)
         for(int j = 0; j < d; j++)
         {
             //start with the highest number, which would be 8 in a 3x3
-            if(d % 2 ==0 && tile_num == 2)
+            //also makes sure that boards with even numbered 'd' will switch 1 and 2
+            if(d % 2 == 0 && tile_num == 2)
             {
                 board[i][j] = 1;
                 --tile_num;
@@ -175,6 +176,7 @@ void init(void)
             }
             else
             {
+                // d is odd, so we don't have to worry about switching 1 and 2
                 board[i][j] = tile_num;
                 --tile_num;
             }
@@ -188,17 +190,20 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
+    // draw d number of rows
     for(int i = 0; i < d; i++)
     {
+        // draw d number of columns
         for(int j = 0; j < d; j++)
         {
+            //if the board tile is zero, draw a space instead
             if(board[i][j] < 1)
             {
                 printf("%s", "_");
             }
             else
             {
+                //if not zero, then just draw the number from the board tile
                 printf("%d", board[i][j]);
             }
         }
@@ -271,7 +276,7 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
+    // increments through the board, starting at 1, going until d * d, which is the last number
     int num = 1;
     for(int i = 0; i < d; i++ )
     {
