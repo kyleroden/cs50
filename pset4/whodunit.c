@@ -81,21 +81,21 @@ int main(int argc, char *argv[])
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
+            //
             //pixels: amount of blue, amount of green, amount of red
             //ie : ff0000 -> blue
             // ffffff -> white
-            //check the values
+            //check triple struct for the amount of red value, 0xff being 'full red', equal to 255
 
-            if(triple.rgbtBlue == 0x00 && triple.rgbtGreen == 0x00 && triple.rgbtRed == 0xff)
+            if(triple.rgbtRed == 0xff)
             {
                 //as a test on smiley.bmp, turn all of the red pixels blue
                 triple.rgbtRed = 0x00;
                 //to do that, give that triple pixel a blue value
-                triple.rgbtBlue = 0xff;
+                triple.rgbtBlue = 0x11;
+                triple.rgbtGreen = 0xee;
             }
-
-
+            
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
         }
