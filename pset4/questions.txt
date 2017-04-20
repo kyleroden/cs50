@@ -4,3 +4,11 @@
 3.  JPEG is lossy compressed.
 4.  The system modifies the first character in the file's directory entry to signal that its directory is available for use by the file system. Then the system moves all of the file's clusters to the hard drive's list of free clusters.
 5.  Overwrite the data with zeros, or random data, several times.
+6.
+// second set of questions? the real questions..?
+
+1. What's stdint.h? stdint.h is a header file which defines a set of integer type aliases, which each have specific width requirements, in bits.
+2. A programmer would use uint8_t, uint32_t, int32_t and uint16_t in order to ensure that their data types are uniform between different machines. The data types create a standardized way of defining how many bytes should be used, regardless of the type of machine.
+3. A BYTE is one byte, a DWORD is four bytes, a LONG is four bytes and a WORD is two bytes.
+4. The first two bytes of any BMP file, also called the 'magic numbers' are 0x42 0x4D.
+5. 
