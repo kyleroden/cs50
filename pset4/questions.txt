@@ -11,4 +11,8 @@
 2. A programmer would use uint8_t, uint32_t, int32_t and uint16_t in order to ensure that their data types are uniform between different machines. The data types create a standardized way of defining how many bytes should be used, regardless of the type of machine.
 3. A BYTE is one byte, a DWORD is four bytes, a LONG is four bytes and a WORD is two bytes.
 4. The first two bytes of any BMP file, also called the 'magic numbers' are 0x42 0x4D.
-5. 
+5. The difference between bisize and bfsize is that bisize, the size of the BITMAPINFOHEADER file stays constant at 40 bytes, while bfsize refers to the sum of bisize plus the other header files.
+6. If the biheight is negative, that means that the device independent bitmap is top-down, starting in the upper left corner.
+7. biBitCount specifies the number of bits per pixel in an uncompressed bitmap file.
+8. In lines 24 and 32, fopen might return null if the user doesn't have the right permissions to create a file or that the file doesn't exist for some reason.
+9. fread always takes an argument of 1 because the program should be looking at each individual pixel struct, one at a time, then checking its values. 
