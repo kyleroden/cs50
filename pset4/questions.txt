@@ -15,4 +15,7 @@
 6. If the biheight is negative, that means that the device independent bitmap is top-down, starting in the upper left corner.
 7. biBitCount specifies the number of bits per pixel in an uncompressed bitmap file.
 8. In lines 24 and 32, fopen might return null if the user doesn't have the right permissions to create a file or that the file doesn't exist for some reason.
-9. fread always takes an argument of 1 because the program should be looking at each individual pixel struct, one at a time, then checking its values. 
+9. fread always takes an argument of 1 because the program should be looking at each individual pixel struct, one at a time, then checking its values.
+10. If bi.biWidth is 3, then padding would be 3.
+11. fseek ensures that the image is copied correctly, by taking into account the padding that may exist after each row of pixels. If there is padding, it sets the stream to begin again after the padding.
+12. SEEK_CUR tells fseek to return to the file stream from the current position.
